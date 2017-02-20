@@ -1,4 +1,52 @@
 <?xml version="1.0" encoding="UTF-8" standalone="yes"?>
-<model type="com.apple.IDECoreDataModeler.DataModel" documentVersion="1.0" lastSavedToolsVersion="1" systemVersion="11A491" minimumToolsVersion="Automatic" sourceLanguage="Swift" userDefinedModelVersionIdentifier="">
-    <elements/>
+<model type="com.apple.IDECoreDataModeler.DataModel" documentVersion="1.0" lastSavedToolsVersion="11759" systemVersion="15G1217" minimumToolsVersion="Automatic" sourceLanguage="Swift" userDefinedModelVersionIdentifier="">
+    <entity name="AppCategory" representedClassName="AppCategory" syncable="YES" codeGenerationType="class">
+        <attribute name="id" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="scheme" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="title" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="utilities" optional="YES" attributeType="String" syncable="YES"/>
+        <relationship name="entry" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="Entry" inverseName="appCategory" inverseEntity="Entry" syncable="YES"/>
+    </entity>
+    <entity name="AppImage" representedClassName="AppImage" syncable="YES" codeGenerationType="class">
+        <attribute name="label" optional="YES" attributeType="String" syncable="YES"/>
+        <relationship name="attributes" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="AppImgAttributes" inverseName="appImg" inverseEntity="AppImgAttributes" syncable="YES"/>
+        <relationship name="entry" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="Entry" inverseName="appImg" inverseEntity="Entry" syncable="YES"/>
+    </entity>
+    <entity name="AppImgAttributes" representedClassName="AppImgAttributes" syncable="YES" codeGenerationType="class">
+        <attribute name="height" optional="YES" attributeType="String" syncable="YES"/>
+        <relationship name="appImg" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="AppImage" inverseName="attributes" inverseEntity="AppImage" syncable="YES"/>
+    </entity>
+    <entity name="AppPrice" representedClassName="AppPrice" syncable="YES" codeGenerationType="class">
+        <attribute name="amount" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="currency" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="label" optional="YES" attributeType="String" syncable="YES"/>
+        <relationship name="entry" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="Entry" inverseName="appPrice" inverseEntity="Entry" syncable="YES"/>
+    </entity>
+    <entity name="Entry" representedClassName="Entry" syncable="YES" codeGenerationType="class">
+        <attribute name="appName" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="artist" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="contentType" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="link" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="releaseDate" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="rights" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="summary" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="title" optional="YES" attributeType="String" syncable="YES"/>
+        <relationship name="appCategory" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="AppCategory" inverseName="entry" inverseEntity="AppCategory" syncable="YES"/>
+        <relationship name="appImg" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="AppImage" inverseName="entry" inverseEntity="AppImage" syncable="YES"/>
+        <relationship name="appPrice" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="AppPrice" inverseName="entry" inverseEntity="AppPrice" syncable="YES"/>
+        <relationship name="feed" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="Feed" inverseName="entry" inverseEntity="Feed" syncable="YES"/>
+    </entity>
+    <entity name="Feed" representedClassName="Feed" syncable="YES" codeGenerationType="class">
+        <attribute name="rights" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="title" optional="YES" attributeType="String" syncable="YES"/>
+        <relationship name="entry" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="Entry" inverseName="feed" inverseEntity="Entry" syncable="YES"/>
+    </entity>
+    <elements>
+        <element name="AppCategory" positionX="99" positionY="-121" width="128" height="118"/>
+        <element name="AppImage" positionX="126" positionY="18" width="126" height="88"/>
+        <element name="AppImgAttributes" positionX="349" positionY="26" width="128" height="73"/>
+        <element name="AppPrice" positionX="108" positionY="119" width="128" height="103"/>
+        <element name="Entry" positionX="-99" positionY="-81" width="128" height="223"/>
+        <element name="Feed" positionX="-288" positionY="18" width="128" height="88"/>
+    </elements>
 </model>
